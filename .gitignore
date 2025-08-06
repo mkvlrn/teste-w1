@@ -63,4 +63,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-src/generated/prisma
+src/generated
