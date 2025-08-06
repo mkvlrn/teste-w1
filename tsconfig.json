@@ -1,0 +1,11 @@
+{
+  "extends": ["@mkvlrn/config/tsconfig-nest"],
+  "compilerOptions": {
+    // no transpiling
+    "noEmit": true,
+
+    // paths
+    "baseUrl": ".",
+    "paths": { "#/*": ["./src/*"] }
+  }
+}

@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Consultor {
+  id       String @id @default(cuid())
+  nome     String
+  cpf      String @unique
+  telefone String
+  email    String @unique
+
+  clientes     Cliente[]
+  compromissos Compromisso[]
+
+  @@map("consultores")
+}
+
+model Cliente {
+  id       String @id @default(cuid())
+  nome     String
+  cpf      String @unique
+  telefone String
+  email    String @unique
+
+  consultorId  String
+  consultor    Consultor     @relation(fields: [consultorId], references: [id])
+  compromissos Compromisso[]
+
+  @@map("clientes")
+}
+
+model Compromisso {
+  id             String @id @default(cuid())
+  assunto        String
+  dataHoraInicio BigInt
+  dataHoraFim    BigInt
+
+  consultorId String
+  consultor   Consultor @relation(fields: [consultorId], references: [id])
+  clienteId   String?
+  cliente     Cliente?  @relation(fields: [clienteId], references: [id])
+
+  @@map("compromissos")
+}

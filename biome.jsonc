@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
+  "root": true,
+  "extends": ["@mkvlrn/config/biome-nest"],
+  "files": {
+    "ignoreUnknown": true,
+    "includes": ["**/*", "!build/**", "!node_modules/**", "!dist/**", "!coverage/**"]
+  }
+}
